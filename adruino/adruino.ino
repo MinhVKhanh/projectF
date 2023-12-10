@@ -2,7 +2,8 @@
 #include <SPI.h>
 #include <LoRa.h>
 #include <Adafruit_Sensor.h>
-#include <Adafruit_BME280.h>
+// #include <Adafruit_BME280.h>
+#include <Adafruit_BMP280.h>
 #include <BH1750.h>       // adds BH1750 library file 
  
 //#define SS 10
@@ -14,9 +15,11 @@
  
 #define BAND 433E6
 #define rain_sensor A0
+
+// #define BMP280_ADDRESS  0x76
  
 #define SEALEVELPRESSURE_HPA (1013.25)
-Adafruit_BME280 bme;
+Adafruit_BMP280 bmp;
  
 BH1750 lightMeter;
  
@@ -26,6 +29,7 @@ char device_id[12] = "MyDevice123";
  
 void setup()
 {
+  delay(2000);
   Serial.begin(115200);
   Wire.begin();
   lightMeter.begin();
@@ -37,26 +41,29 @@ void setup()
  
   //LoRa.setPins(SS, RST, DI0);
   //LoRa.setTxPower(TX_P);
-  //LoRa.setSyncWord(ENCRYPT);
- 
+  //LoRa.setSyncWord(ENCRYPT); 
   if (!LoRa.begin(BAND))
   {
     Serial.println(F("Starting LoRa failed!"));
     while (1);
   }
-  if (!bme.begin(0x76))
+  Serial.println("Starting test bmp280");
+  if (!bmp.begin(0x76))
   {
-    Serial.println("Could not find a valid BME280 sensor, check wiring!");
+    Serial.println("Could not find a valid BMP280 sensor, check wiring!");
     while (1);
   }
+  delay(500);
+  Serial.println("tested");
 }
  
 void loop()
 {
-  float temperature = bme.readTemperature();
-  float pressure = bme.readPressure() / 100.0F;
-  float altitude = bme.readAltitude(SEALEVELPRESSURE_HPA);
-  float humidity = bme.readHumidity();
+  float temperature = bmp.readTemperature();
+  float pressure = bmp.readPressure() / 100.0F;
+  float altitude = bmp.readAltitude(SEALEVELPRESSURE_HPA);
+  
+  float humidity = bmp.readHumidity();
  
   double dewPoint = dewPointFast(temperature, humidity);
  
@@ -105,7 +112,7 @@ void loop()
  
  
   Serial.println();
- 
+//  + "#" + String(altitude) + "@" + String(humidity) + "$" + String(dewPoint)
   LoRaMessage = String(device_id) + "/" + String(temperature) + "&" + String(pressure)
                 + "#" + String(altitude) + "@" + String(humidity) + "$" + String(dewPoint)
                 + "^" + String(rainfall) + "!" + String(lux);
