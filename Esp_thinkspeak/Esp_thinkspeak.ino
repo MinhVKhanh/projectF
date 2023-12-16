@@ -4,13 +4,17 @@
 // #include <WiFi.h>
  
 String apiKey = "GKME9T2K2MI0JTD2"; // Enter your Write API key from ThingSpeak
-const char* ssid = "PHONG TRO";
-const char* password = "phongtro85a";
+const char* ssid = "PHONGTRO";
+const char* password = "khanh";
 const char* server = "api.thingspeak.com";
  
-#define SS 5
-#define RST 14
-#define DI0 2
+ #define SS 5
+ #define RST 14
+ #define DI0 2
+
+// #define SS 15
+// #define RST 16
+// #define DI0 2
  
 //#define TX_P 17
 #define BAND 433E6
@@ -27,26 +31,32 @@ String lux;
  
 WiFiClient client;
  
+//void ICACHE_RAM_ATTR ISRoutine ();
  
 void setup()
 {
+  delay(2000);
   Serial.begin(115200);
+  while (!Serial);
   Serial.println("LoRa Receiver");
+  Serial.println("TEST1");
   //LoRa.setTxPower(TX_P);
   //LoRa.setSyncWord(ENCRYPT);
  
-  LoRa.setPins(SS, RST, DI0);
+   LoRa.setPins(SS, RST, DI0);
   if (!LoRa.begin(BAND))
   {
     Serial.println("Starting LoRa failed!");
     while (1);
   }
+  Serial.println("TEST2");
  
   Serial.println("Connecting to ");
   Serial.println(ssid);
  
   //connect to your local wi-fi network
   WiFi.begin(ssid, password);
+  Serial.println("TEST3");
  
   //check wi-fi is connected to wi-fi network
   while (WiFi.status() != WL_CONNECTED) {
@@ -63,6 +73,7 @@ void setup()
 void loop()
 {
   // try to parse packet
+  Serial.println("TEST4");
   int pos1, pos2, pos3, pos4, pos5, pos6, pos7;
  
   int packetSize = LoRa.parsePacket();

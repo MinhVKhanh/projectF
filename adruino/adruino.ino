@@ -5,6 +5,7 @@
 // #include <Adafruit_BME280.h>
 #include <Adafruit_BMP280.h>
 #include <BH1750.h>       // adds BH1750 library file 
+#include <DHT.h>
  
 //#define SS 10
 //#define RST 9
@@ -15,10 +16,14 @@
  
 #define BAND 433E6
 #define rain_sensor A0
-
+const int DHTPIN = 3;
+const int DHTTYPE = DHT11;
 // #define BMP280_ADDRESS  0x76
  
 #define SEALEVELPRESSURE_HPA (1013.25)
+
+DHT dht(DHTPIN, DHTTYPE);
+
 Adafruit_BMP280 bmp;
  
 BH1750 lightMeter;
@@ -30,11 +35,12 @@ char device_id[12] = "MyDevice123";
 void setup()
 {
   delay(2000);
-  Serial.begin(115200);
+  Serial.begin(115200); 
   Wire.begin();
   lightMeter.begin();
- 
+  dht.begin(); 
   pinMode (rain_sensor, INPUT);
+
   while (!Serial);
  
   Serial.println(F("LoRa Sender"));
@@ -44,7 +50,7 @@ void setup()
   //LoRa.setSyncWord(ENCRYPT); 
   if (!LoRa.begin(BAND))
   {
-    Serial.println(F("Starting LoRa failed!"));
+    Serial.println("Starting LoRa failed!");
     while (1);
   }
   Serial.println("Starting test bmp280");
@@ -54,7 +60,7 @@ void setup()
     while (1);
   }
   delay(500);
-  Serial.println("tested");
+  Serial.println("Finish checking");
 }
  
 void loop()
@@ -63,7 +69,8 @@ void loop()
   float pressure = bmp.readPressure() / 100.0F;
   float altitude = bmp.readAltitude(SEALEVELPRESSURE_HPA);
   
-  float humidity = bmp.readHumidity();
+  // float humidity = bmp.readHumidity();
+  float humidity = dht.readHumidity();
  
   double dewPoint = dewPointFast(temperature, humidity);
  
