@@ -1,21 +1,16 @@
 #include <SPI.h>
 #include <LoRa.h>
+//#include <WiFi.h>
 #include <ESP8266WiFi.h>
-// #include <WiFi.h>
-#include <Esp.h>
  
 String apiKey = "GKME9T2K2MI0JTD2"; // Enter your Write API key from ThingSpeak
 const char* ssid = "PHONG TRO";
 const char* password = "phongtro85a";
 const char* server = "api.thingspeak.com";
  
-// #define SS 5
-// #define RST 14
-// #define DI0 2
-
- #define SS 11
- #define RST 14
- #define DI0 4
+#define SS 11
+#define RST 14
+#define DI0 4
  
 //#define TX_P 17
 #define BAND 433E6
@@ -32,18 +27,11 @@ String lux;
  
 WiFiClient client;
  
-//void ICACHE_RAM_ATTR ISRoutine ();
  
 void setup()
 {
-//  ESP.wdtDisable();
-  delay(2000);  
-  Serial.begin(115200);  
-//  while (!Serial){ESP.wdtFeed();};
-  Serial.println("LoRa Receiver");
-  Serial.println("TEST1");
-  
-//  ESP.wdtEnable(2000);
+  Serial.begin(115200);
+  Serial.println(" LoRa Receiver");
   //LoRa.setTxPower(TX_P);
   //LoRa.setSyncWord(ENCRYPT);
  
@@ -52,15 +40,13 @@ void setup()
   {
     Serial.println("Starting LoRa failed!");
     while (1){ESP.wdtFeed();};
-  };
-  Serial.println("TEST2");
+  }
  
   Serial.println("Connecting to ");
   Serial.println(ssid);
  
   //connect to your local wi-fi network
   WiFi.begin(ssid, password);
-  Serial.println("TEST3");
  
   //check wi-fi is connected to wi-fi network
   while (WiFi.status() != WL_CONNECTED) {
@@ -77,16 +63,14 @@ void setup()
 void loop()
 {
   // try to parse packet
-//  ESP.wdtFeed(); // service the WDT here
-  Serial.println("TEST4");
   int pos1, pos2, pos3, pos4, pos5, pos6, pos7;
  
-  int packetSize = LoRa.parsePacket();
+  int packetSize =  LoRa.parsePacket();
   if (packetSize)
   {
     // received a packet
     Serial.print("Received packet:  ");
-    String LoRaData = LoRa.readString();
+    String LoRaData =  LoRa.readString();
     Serial.print(LoRaData);
     // read packet
     while (LoRa.available())
