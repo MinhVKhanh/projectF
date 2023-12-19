@@ -128,7 +128,7 @@ void loop()
   LoRa.beginPacket();
   LoRa.print(LoRaMessage);
   LoRa.endPacket();
-  delay(10000);
+  delay(60000);
 }
  
  

@@ -13,8 +13,8 @@ const char* server = "api.thingspeak.com";
 // #define RST 14
 // #define DI0 2
 
- #define SS 11
- #define RST 14
+ #define SS 15
+ #define RST 16
  #define DI0 4
  
 //#define TX_P 17
@@ -78,7 +78,7 @@ void loop()
 {
   // try to parse packet
 //  ESP.wdtFeed(); // service the WDT here
-  Serial.println("TEST4");
+//  Serial.println("TEST4");
   int pos1, pos2, pos3, pos4, pos5, pos6, pos7;
  
   int packetSize = LoRa.parsePacket();
