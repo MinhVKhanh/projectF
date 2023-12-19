@@ -21,72 +21,68 @@
 
 <body>
 
-    <div class="container">
-        <div class="search_box">
-            <input type="text" placeholder="Enter a city name" id="city" value="Ho Chi Minh" autocomplete="off" />
-            <button id="search"><ion-icon class="icon" name="search"></ion-icon></button>
+    <section class="linebg">
+        <div class="container">
+            <div class="search_box">
+                <input type="text" placeholder="Enter a city name" id="city" value="Ho Chi Minh" autocomplete="off" />
+                <button id="search"><ion-icon class="icon" name="search"></ion-icon></button>
+            </div>
+            <div id="show">
+            </div>
         </div>
-        <div id="show">
+        <!-- <div > -->
+        <!-- <div class="container4">
+            <h1>
+                Welcome back
+            </h1> -->
+    
+    
+        <!-- </div> -->
+        <!-- <div class="container3">
+                <iframe width="650" height="260" style="border: 1px solid #cccccc;"
+                    src="https://thingspeak.com/channels/2370169/charts/1?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=line&update=15"></iframe>
+            </div> -->
+    
+        <!-- </div> -->
+        <div class="chart">
+            <div class="">
+                <p class="text">Welcome back</p>
+                <p class="text2">Check out today's weather information</p>
+            </div>
+            <div class="chart2">
+                <iframe class="linegraph"
+                    src="https://thingspeak.com/channels/2370169/charts/1?bgcolor=%23ffffff&color=%23d62020&days=1&max=40&min=0&results=60&title=Upcoming+hours&xaxis=Time&yaxis=Temperature&yaxismax=40&yaxismin=20"></iframe>
+                <iframe class="linegraph" src="https://thingspeak.com/channels/2370169/widgets/773381"></iframe>
+    
+    
+            </div>
+            <p class="text2">More details of today's weather</p>
+            <div class="chart2">
+                <iframe class="linegraph"
+                    src="https://thingspeak.com/channels/2370169/charts/2?bgcolor=%23ffffff&color=%23d62020&results=60&title=Pressure&yaxismax=1020&yaxismin=1000"></iframe>
+                <iframe class="linegraph"
+                    src="https://thingspeak.com/channels/2370169/charts/3?bgcolor=%23ffffff&color=%23d62020&results=60&title=Altitude&yaxismax=50&yaxismin=0"></iframe>
+    
+            </div>
+    
+            <div class="chart2">
+                <iframe class="linegraph"
+                    src="https://thingspeak.com/channels/2370169/charts/4?bgcolor=%23ffffff&color=%23d62020&results=60&title=Humidity&yaxismax=100&yaxismin=50"></iframe>
+                <iframe class="linegraph"
+                    src="https://thingspeak.com/channels/2370169/charts/5?bgcolor=%23ffffff&color=%23d62020&results=60&title=Dew+point&yaxismax=30&yaxismin=10"></iframe>
+    
+            </div>
+            <div class="chart2">
+                <iframe class="linegraph"
+                    src="https://thingspeak.com/channels/2370169/charts/6?bgcolor=%23ffffff&color=%23d62020&results=60&title=Rain+fall&yaxismax=5&yaxismin=0"></iframe>
+                <iframe class="linegraph"
+                    src="https://thingspeak.com/channels/2370169/charts/7?bgcolor=%23ffffff&color=%23d62020&results=60&title=Lux&yaxismax=620&yaxismin=600"></iframe>
+    
+            </div>
+    
         </div>
-    </div>
-    <!-- <div > -->
-    <!-- <div class="container4">
-        <h1>
-            Welcome back
-        </h1> -->
-
-
-    <!-- </div> -->
-    <!-- <div class="container3">
-            <iframe width="650" height="260" style="border: 1px solid #cccccc;"
-                src="https://thingspeak.com/channels/2370169/charts/1?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=line&update=15"></iframe>
-        </div> -->
-
-    <!-- </div> -->
-    <div class="chart">
-        <div class="">
-            <p class="text">Welcome back</p>
-            <p class="text2">Check out today's weather information</p>
-        </div>
-        <div class="chart2">
-            <iframe class="linegraph"
-                src="https://thingspeak.com/channels/2370169/charts/1?bgcolor=%23ffffff&color=%23d62020&days=1&max=40&min=0&results=60&title=Upcoming+hours&xaxis=Time&yaxis=Temperature&yaxismax=40&yaxismin=20"></iframe>
-            <iframe class="linegraph" src="https://thingspeak.com/channels/2370169/widgets/773381"></iframe>
-
-
-        </div>
-        <p class="text2">More details of today's weather</p>
-        <div class="chart2">
-            <iframe class="linegraph"
-                src="https://thingspeak.com/channels/2370169/charts/2?bgcolor=%23ffffff&color=%23d62020&results=60&title=Pressure&yaxismax=1020&yaxismin=1000"></iframe>
-            <iframe class="linegraph"
-                src="https://thingspeak.com/channels/2370169/charts/3?bgcolor=%23ffffff&color=%23d62020&results=60&title=Altitude&yaxismax=50&yaxismin=0"></iframe>
-
-        </div>
-
-        <div class="chart2">
-            <iframe class="linegraph"
-                src="https://thingspeak.com/channels/2370169/charts/4?bgcolor=%23ffffff&color=%23d62020&results=60&title=Humidity&yaxismax=100&yaxismin=50"></iframe>
-            <iframe class="linegraph"
-                src="https://thingspeak.com/channels/2370169/charts/5?bgcolor=%23ffffff&color=%23d62020&results=60&title=Dew+point&yaxismax=30&yaxismin=10"></iframe>
-
-        </div>
-        <div class="chart2">
-            <iframe class="linegraph"
-                src="https://thingspeak.com/channels/2370169/charts/6?bgcolor=%23ffffff&color=%23d62020&results=60&title=Rain+fall&yaxismax=5&yaxismin=0"></iframe>
-            <iframe class="linegraph"
-                src="https://thingspeak.com/channels/2370169/charts/7?bgcolor=%23ffffff&color=%23d62020&results=60&title=Lux&yaxismax=620&yaxismin=600"></iframe>
-
-        </div>
-
-    </div>
-
-
-
-
-
-
-
+    
+    </section>
     <!---------------  SCRIPT  --------------------->
     <script src="script.js"></script>
 </body>
